@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+{# product_detail.html #}
+<h1>{{ product.title }}</h1>
+<p>Price: ${{ product.price }}</p>
+{{ form }}
+
+{% endblock %}

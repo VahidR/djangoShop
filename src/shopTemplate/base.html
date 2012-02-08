@@ -1,0 +1,147 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+{% load i18n %}
+<head>
+    
+    <title>{% block title %}User test{% endblock %}</title>
+    
+    
+<style type="text/css">
+
+body {
+	font-family:serif,tahoma,verdana;
+	font-size:100%;
+	background-color : #F8F8F8 ;
+	margin-left: auto ;
+  	margin-right: auto ;
+}
+
+a:link, a:visited {
+	text-decoration: none;
+	color: #6A5ACD;
+	background-color: transparent;
+}
+a:hover, a:active {
+	text-decoration: underline;
+	color: #191970;
+	background-color: #C9C3ED;
+}	
+
+#footer{
+	background-color : #F0F0F0 ;
+	clear : both;
+	font-size : 1em;
+	padding : 20px 1px 20px 1px;
+	text-align: center;
+}
+
+#header {
+	clear : both;
+	font-size : 1em;
+	padding : 20px 10px 20px 10px;
+	background-color : #F0F0F0 ; 
+	
+}
+
+#main {
+	clear : both;
+	font-size : 1em;
+	padding : 20px;
+	background-color : #FFFFFF;
+	
+}
+
+table{
+	border-collapse:collapse;
+	
+}
+
+table, td, th{
+	border:0px solid black;
+	height:50px;
+}
+
+.pheader{
+	text-align:center;
+	color: blue;
+	font-style: italic;
+	font-size: 100%;
+	font-weight: bold;
+}
+</style>    
+    
+    
+</head>
+
+<body>
+		 
+<div id="header">
+        {% block header %}
+	 	<img src="{{STATIC_URL}}logo.jpg" align="left" />
+	 	
+	 	<div class="pheader"> Django Shop </div>
+	 	
+	 	<div align="left" id="search">
+	 		<form action="/product/search/" method="get">
+	 			<input type="text" name="q">
+	 			<input type="submit" value="Search" />
+	 		</form>
+	 	</div>
+	 	
+	 	<div align="right">
+	 		{% if user.is_authenticated %}
+		  	{% trans "Logged in" %}: {{ user.username }} 
+		  	(<a href="{% url auth_logout %}">{% trans "Log out" %}</a> | 
+		  	<a href="{% url auth_password_change %}">{% trans "Change password" %}</a>
+		  	| <a href="/accounts/editProfile/">Edit Profile</a>)
+			{% else %}
+		  	<a href="{% url auth_login %}">{% trans "Log in" %}</a>
+			{% endif %}
+		</div>
+		
+		<div align="left">
+		 	<a href="{% url djangoShop.products.views.home %}"> Home </a>
+		</div>
+		
+		{% endblock %}
+</div>
+    
+<div id="main">    
+    <table width="100%" >
+    	<tr>
+    		<td width="40"></td>
+    		{% if all_categories%}
+    		<td width="23" >
+		    	<h4> Categories </h4>
+			    <div id="sidebar">
+			    	{% for category in all_categories	%}
+			    		<h5> <a href="/product/category/{{category.id}}">{{category.name}} </a> </h5>
+			    	{% endfor %}
+			    </div>
+			 </td>
+		    {% endif %}
+		    <td>
+			    <div id="content">
+			        {% block content %}{% endblock %}
+			    </div>
+			</td>
+			<td width="80"></td>
+	    </tr>
+	</table>
+</div>	     
+
+    
+<div id="footer">
+        {% block footer %}
+        
+        	&copy; 2011 DjangoShop. All Right Reserved
+        
+        {% endblock %}
+</div>
+    
+
+</body>
+
+</html>

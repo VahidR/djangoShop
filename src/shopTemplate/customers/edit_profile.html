@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h2> Dear {{user.first_name }} {{user.last_name}} </h2>
+<table >
+	<form action="/accounts/updateProfile/" method="post"> {% csrf_token %}
+		{% for field in userForm %}
+		<tr bgcolor="{% cycle eeeeee,cccccc %}">
+			<div class="fieldWrapper">
+				<td> {{ field.label_tag|removetags:"li p br"}}: </td> 
+				<td> {{ field }} </td>
+				<td> <font color="red"> {{ field.errors }} </font></td>
+			</div>
+		</tr>
+		{% endfor %}
+		{% for field in customerForm %}
+		<tr bgcolor="{% cycle eeeeee,cccccc %}">
+			<div class="fieldWrapper">
+				<td> {{ field.label_tag|removetags:"li p br"}}: </td> 
+				<td> {{ field }} </td>
+				<td> <font color="red"> {{ field.errors }} </font></td>
+			</div>
+		</tr>
+		{% endfor %}
+		<tr> 
+			<td colspan="2"> <input type="submit" value="{% trans 'Update' %}" /></td>
+		</tr>
+	</form>
+</table>
+
+{% endblock %}

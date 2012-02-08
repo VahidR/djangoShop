@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+{# product_detail.html #}
+
+
+<h5> <a href="/product/category/{{product.category.id}}">{{product.category.name}} </a> </h5>			    
+<div align="center">
+	<table border="0">
+	<td align="center" width="70%">
+		<img src = "{{photoPath}}{{product.photo}}" /> <br />
+		<h2>{{ product.name }}</h2> <br />
+		<h3>{{ product.category.description }}</h3> <br />
+		<h3>{{ product.manufacturer }}</h3> <br />
+		<p>Price: ${{ product.price }}</p> <br />
+
+		<form action="/cart/addtocart/{{ product.id }}/" method="get"> 
+					<input type=text size="2" name="quantity" value="1" /> 
+					<input type="submit" name="submit" value="{% trans 'add to basket' %}" /> 
+		</form> <br />
+		
+	
+	</td>
+	<td>
+		<p>
+		<i>you can serach within the relevant category</i>
+		<h5> <a href="/product/category/{{product.category.id}}">{{product.category.name}} </a> </h5>
+		</p>
+	</td>
+	</table>
+
+</div>
+{% endblock %}

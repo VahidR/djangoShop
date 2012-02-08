@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if cart.itemCount > 0 %}
+	<h4 align="center"><font color="red"> {{ message }} </font></h4>
+	    <table border="1" cellpadding="5" align="center" width="70%">
+	        <tr bgcolor="9999FF">
+	            <th>Product</th>
+	            <th>Unit Price</th>
+	            <th>Quantity</th>
+	            <th>Total Price</th>
+	            <th>Delete form Cart</th>
+	        </tr>
+	        {% for item in cart %}
+	        <tr bgcolor="{% cycle eeeeee,cccccc %}">
+	            <td>{{ item.product.name }}</td>
+	            <td>{{item.unit_price}}</td>
+		        <td>
+		        	<form action="/cart/updateIteminCart/{{ item.product.id }}/" method="get">
+		            	<input type="text" name="quantity" value="{{ item.quantity }}">
+		            	<input type="submit" value="Update">
+		            </form>
+		        </td>
+	            <td>{{ item.total_price }}</td>
+	            <td>
+		            <form action="/cart/removeItem/{{ item.product.id }}/" method="get">
+		            	<input type="submit" value="Delete item">
+		            </form>
+		        </td>
+	        </tr>
+	        {% endfor %}
+	    </table>
+	    <h3 align="center"> {{cart.user.username}}You have {{cart.itemCount}} items in your baskt and total price is {{cart.total}}</h3>
+	    {{totalP}} 
+	    <h4 align="center"> Please check-out your order(s) <a href="{% url cart_checkout %}"> Check-out </a></h4>
+{% else %}
+    <H1> You cart  is empty <br> </H1>
+{% endif %}
+
+<a href="{% url djangoShop.products.views.home %}"> Show Products </a>
+
+{% endblock %}

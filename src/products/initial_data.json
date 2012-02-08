@@ -1,0 +1,38 @@
+[
+  {
+    "pk": 1, 
+    "model": "products.product", 
+    "fields": {
+      "category": 1, 
+      "description": "jean khosh dookht", 
+      "photo": "product_photo/emblem.png", 
+      "price": "50", 
+      "name": "jean", 
+      "slug": "jean", 
+      "manufacturer": "Jeans"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "products.product", 
+    "fields": {
+      "category": 1, 
+      "description": "vcbv", 
+      "photo": "", 
+      "price": "800", 
+      "name": "sample", 
+      "slug": "gh", 
+      "manufacturer": ""
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "products.category", 
+    "fields": {
+      "description": "shalvare khoob", 
+      "name": "shalvar", 
+      "parent": null, 
+      "slug": "shalvar"
+    }
+  }
+]

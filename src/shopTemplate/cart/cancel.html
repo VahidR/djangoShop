@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <p> You have canceled the payment. Was it something I did?</p>
+    <a href="{% url djangoShop.orders.views.get_cart %}"> Edit your cart </a>
+{% endblock %}

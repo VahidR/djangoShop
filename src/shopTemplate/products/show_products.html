@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h1 align="center"> Product List
+	{% if category_name %}
+		({{category_name}})
+	{% endif %} 
+	</h1>
+<h4 align="center"><font color="red"> {{ message }} </font></h4>
+
+<table border="1" cellpadding="5" align="center" width="40%">
+	<tr bgcolor="9999FF"> 
+		<th> Name </th> 
+		<th> Price </th>
+		<th> Quantity </th>
+	</tr>
+	{% for item in all_products %}
+		<tr bgcolor="{% cycle eeeeee,cccccc %}">
+			<td> <a href="/product/{{ item.id }}">{{ item.name }} </a> <br /> {{ item.description }} </td> 
+			<td> {{ item.price }} </td>
+			<td> 
+				<form action="/cart/addtocart/{{ item.id }}/" method="get"> 
+					<input type=text size="1" name="quantity" value="1" /> 
+					<input type="submit" name="submit" value="{% trans 'add to basket' %}" /> 
+				</form>
+			</td>
+		</tr>
+	{% endfor %}
+	
+</table> 
+
+{% endblock %}

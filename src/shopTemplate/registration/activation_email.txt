@@ -1,0 +1,19 @@
+{% load i18n %}
+
+Hello {{user.username}},
+
+You have registered in {{site.name}}. To activate your account please click on the following link. 
+If the link doesnt work copy and paste the URL below into your browsers address bar and press ENTER 
+ 
+{% trans "Activate account at" %} {{ site.name }}:
+
+http://{{ site.domain }}{% url registration_activate activation_key %}
+
+{% blocktrans %}Link is valid for {{ expiration_days }} days.{% endblocktrans %}
+
+------------------------------------------------------------------------------------
+If you are not the person who registered in our website please DO NOT CLICK on link.
+the account will be automatically removed after {{ expiration_days }} days. 
+
+Best Regards,
+Django Shop

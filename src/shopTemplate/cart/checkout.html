@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>You are going to finalize your order(s) using PayPal. </h2>
+<form method="POST"
+    action="{{ PAYPAL_URL }}"
+    id="checkout_form">
+    {{ form }}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript">
+		$('input[@name="http://127.0.0.1:8000/"]').attr('name', 'return');
+	</script>
+    <input type="submit" value="I want to Pay"> </form>
+
+{% endblock %}
